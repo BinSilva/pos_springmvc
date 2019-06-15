@@ -23,6 +23,7 @@
 						<tr th:each="fabricante : ${fabricantes}">
 							<td th:text="${fabricante.id}"></td>
 							<td th:text="${fabricante.nome}"></td>
+							<td th:text="${fabricante.descricao}"></td>
 							<td>
 								<a class="btn btn-success" th:href="@{/fabricantes/editar/{id}(id=${fabricante.id})}">Editar</a>
 								<a class="btn btn-danger" onclick="return confirm('Confirma a exclusão?');"

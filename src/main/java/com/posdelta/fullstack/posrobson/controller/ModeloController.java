@@ -5,7 +5,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.posdelta.fullstack.posrobson.model.Fabricante;
 import com.posdelta.fullstack.posrobson.model.Modelo;
-import com.posdelta.fullstack.posrobson.repository.FabricanteRepository;
-import com.posdelta.fullstack.posrobson.repository.ModeloRepository;
+import com.posdelta.fullstack.posrobson.service.FabricanteService;
+import com.posdelta.fullstack.posrobson.service.ModeloService;
 import com.posdelta.fullstack.posrobson.type.Categoria;
 
 @Controller
@@ -30,10 +29,10 @@ public class ModeloController {
     private static final String MODELO_LISTA = "modeloLista";
 
     @Autowired
-    private ModeloRepository repository;
+    private ModeloService modeloService;
 
     @Autowired
-    private FabricanteRepository fabricanteRepository;
+    private FabricanteService fabricanteService;
 
     @RequestMapping("/novo")
     public ModelAndView novo() {
@@ -50,10 +49,10 @@ public class ModeloController {
         }
 
         if (modelo.getId() == null) {
-            repository.save(modelo);
+        	modeloService.incluir(modelo);
             redirectAttributes.addFlashAttribute("mensagem", "Inclusão realizada com sucesso!");
         } else {
-            repository.save(modelo);
+        	modeloService.alterar(modelo);
             redirectAttributes.addFlashAttribute("mensagem", "Alteração realizada com sucesso!");
         }
 
@@ -63,7 +62,7 @@ public class ModeloController {
     @GetMapping
     public ModelAndView listar() {
         ModelAndView modelAndView = new ModelAndView(MODELO_LISTA);
-        modelAndView.addObject("modelos", repository.findAll());
+        modelAndView.addObject("modelos", modeloService.listar());
         return modelAndView;
     }
 
@@ -71,9 +70,7 @@ public class ModeloController {
     public ModelAndView editar(@PathVariable("id") Long id) {
         ModelAndView modelAndView = new ModelAndView(MODELO_CADASTRO);
 
-        modelAndView.addObject(repository
-                .findById(id).orElseThrow(()
-                        -> new EmptyResultDataAccessException(0)));
+        modelAndView.addObject(modeloService.pesquisaPorId(id));
 
         return modelAndView;
     }
@@ -81,7 +78,7 @@ public class ModeloController {
     @GetMapping("/excluir/{id}")
     public ModelAndView excluir(@PathVariable("id") Long id) {
         ModelAndView modelAndView = new ModelAndView("redirect:/modelos");
-        repository.deleteById(id);
+        modeloService.excluir(id);
         return modelAndView;
     }
 
@@ -92,6 +89,6 @@ public class ModeloController {
 
     @ModelAttribute(name = "todosFabricantes")
     public List<Fabricante> todosFabricantes(){
-        return fabricanteRepository.findAll();
+        return fabricanteService.listar();
     }
 }

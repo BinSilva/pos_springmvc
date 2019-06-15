@@ -33,7 +33,7 @@
 				<label for="categoria">Categoria:</label>
 				<select id="categoria" class="form-control" th:field="*{categoria}">
 				 <option value="">SELECIONE</option>
-				 <option th:each="categoria : ${todasCategorias}" th:text="${categoria.descricao}" th:value="${categoria.descricao}"></option>
+				 <option th:each="categoria : ${todasCategorias}" th:text="${categoria.descricao}" th:value="${categoria}"></option>
 				</select>
 			</div>
 			
@@ -41,7 +41,7 @@
 				<label for="fabricante">Fabricante:</label>
 				<select id="fabricante" class="form-control" th:field="*{fabricante}">
 				 <option value="">SELECIONE</option>
-				 <option th:each="fabricante : ${todosFabricantes}" th:text="${fabricante.descricao}" th:value="${fabricante.id}"></option>
+				 <option th:each="fabricante : ${todosFabricantes}" th:text="${fabricante.nome}" th:value="${fabricante.id}"></option>
 				</select>
 			</div>
 			

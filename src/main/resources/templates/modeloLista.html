@@ -14,28 +14,24 @@
 					<thead class="thead-dark">
 						<tr>
 							<th>Id</th>
-							<th>Carro</th>
-							<th>Modelo</th>
-							<th>Fabricante</th>
-							<th>Valor da Diária</th>
+							<th>Categoria</th>
+							<th>Descrição</th>
 							<th>Ação</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="carro : ${carros}">
-							<td th:text="${carro.id}"></td>
-							<td th:text="${carro.nome}"></td>
-							<td th:text="${carro.modelo}"></td>
-							<td th:text="${carro.fabricante}"></td>
-							<td th:text="${carro.valorDiaria}"></td>
+						<tr th:each="modelo : ${modelos}">
+							<td th:text="${modelo.id}"></td>
+							<td th:text="${modelo.categoria}"></td>
+							<td th:text="${modelo.descricao}"></td>
 							<td>
-								<a class="btn btn-success" th:href="@{/carros/editar/{id}(id=${carro.id})}">Editar</a>
+								<a class="btn btn-success" th:href="@{/modelos/editar/{id}(id=${modelo.id})}">Editar</a>
 								<a class="btn btn-danger" onclick="return confirm('Confirma a exclusão?');"
-								th:href="@{/carros/excluir/{id}(id=${carro.id})}">
+								th:href="@{/modelos/excluir/{id}(id=${modelo.id})}">
 								Excluir</a>
 							</td>
 						</tr>
-						<tr th:if="${#lists.isEmpty(carros)}">
+						<tr th:if="${#lists.isEmpty(modelos)}">
 								<td colspan="8">Nenhum carro cadastrado!</td>
 							</tr>
 					</tbody>

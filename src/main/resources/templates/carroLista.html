@@ -14,9 +14,8 @@
 					<thead class="thead-dark">
 						<tr>
 							<th>Id</th>
-							<th>Carro</th>
-							<th>Modelo</th>
-							<th>Fabricante</th>
+							<th>Chassi</th>
+							<th>Placa</th>
 							<th>Valor da Diária</th>
 							<th>Ação</th>
 						</tr>
@@ -24,9 +23,8 @@
 					<tbody>
 						<tr th:each="carro : ${carros}">
 							<td th:text="${carro.id}"></td>
-							<td th:text="${carro.nome}"></td>
-							<td th:text="${carro.modelo}"></td>
-							<td th:text="${carro.fabricante}"></td>
+							<td th:text="${carro.chassi}"></td>
+							<td th:text="${carro.placa}"></td>
 							<td th:text="${carro.valorDiaria}"></td>
 							<td>
 								<a class="btn btn-success" th:href="@{/carros/editar/{id}(id=${carro.id})}">Editar</a>

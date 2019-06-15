@@ -15,14 +15,14 @@ public class FabricanteService {
 	@Autowired
 	private FabricanteRepository repository;
 	
-	public Fabricante incluir(Fabricante Fabricante) {
-		Fabricante.setId(null);
-		return repository.save(Fabricante);
+	public Fabricante incluir(Fabricante fabricante) {
+		fabricante.setId(null);
+		return repository.save(fabricante);
 	}
 	
-	public Fabricante alterar(Fabricante Fabricante) {
-		pesquisaPorId(Fabricante.getId());
-		return repository.save(Fabricante);
+	public Fabricante alterar(Fabricante fabricante) {
+		pesquisaPorId(fabricante.getId());
+		return repository.save(fabricante);
 	}
 	
 	public void excluir(Long id) {

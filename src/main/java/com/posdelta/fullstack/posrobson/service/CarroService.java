@@ -15,14 +15,14 @@ public class CarroService {
 	@Autowired
 	private CarroRepository repository;
 	
-	public Carro incluir(Carro Carro) {
-		Carro.setId(null);
-		return repository.save(Carro);
+	public Carro incluir(Carro carro) {
+		carro.setId(null);
+		return repository.save(carro);
 	}
 	
-	public Carro alterar(Carro Carro) {
-		pesquisaPorId(Carro.getId());
-		return repository.save(Carro);
+	public Carro alterar(Carro carro) {
+		pesquisaPorId(carro.getId());
+		return repository.save(carro);
 	}
 	
 	public void excluir(Long id) {

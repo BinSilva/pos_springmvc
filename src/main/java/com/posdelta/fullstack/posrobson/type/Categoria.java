@@ -2,7 +2,7 @@ package com.posdelta.fullstack.posrobson.type;
 
 public enum Categoria {
 	
-	hATCH("HATCH"), 
+	HATCH("HATCH"), 
 	SEDAN("SEDAN"), 
 	UTILITARIO("UTILITÁRIO"), 
 	ESPORTIVO("ESPOSTIVO");
