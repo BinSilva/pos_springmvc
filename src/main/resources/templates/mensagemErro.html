@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+	<!-- Erros --> 
+	<div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+		<div th:each="error : ${#fields.detailedErrors()}">
+		  <span th:text="${error.message}"></span>
+		</div>
+	</div>
+	
+</html>

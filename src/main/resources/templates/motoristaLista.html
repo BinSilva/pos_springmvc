@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layoutPadrao}">
+<head>
+<meta charset="UTF-8">
+<title>Lista de motoristas</title>
+</head>
+<body>
+	<section layout:fragment="conteudo">
+		<h1>Lista de motoristas</h1>
+			<div class="container">
+				<table border="1" class="table table-striped">
+					<thead class="thead-dark">
+						<tr>
+							<th>Id</th>
+							<th>Motorista</th>
+							<th>Ação</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="motorista : ${motoristas}">
+							<td th:text="${motorista.id}"></td>
+							<td th:text="${motorista.nome}"></td>
+							<td>
+								<a class="btn btn-success" th:href="@{/motoristas/editar/{id}(id=${motorista.id})}">Editar</a>
+								<a class="btn btn-danger" onclick="return confirm('Confirma a exclusão?');"
+								th:href="@{/motoristas/excluir/{id}(id=${motorista.id})}">
+								Excluir</a>
+							</td>
+						</tr>
+						<tr th:if="${#lists.isEmpty(motoristas)}">
+								<td colspan="8">Nenhum motorista cadastrada!</td>
+							</tr>
+					</tbody>
+				</table>
+			</div>
+	</section>
+</body>
+</html>
