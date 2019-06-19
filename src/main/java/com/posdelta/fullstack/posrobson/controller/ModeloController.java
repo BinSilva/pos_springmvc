@@ -76,9 +76,14 @@ public class ModeloController {
     }
 
     @GetMapping("/excluir/{id}")
-    public ModelAndView excluir(@PathVariable("id") Long id) {
+    public ModelAndView excluir(@PathVariable("id") Long id, Errors errors) {
         ModelAndView modelAndView = new ModelAndView("redirect:/modelos");
-        modeloService.excluir(id);
+        try {
+        	modeloService.excluir(id);
+		} catch (Exception e) {
+			modelAndView = new ModelAndView(MODELO_LISTA);
+			errors.getAllErrors();
+		}
         return modelAndView;
     }
 
